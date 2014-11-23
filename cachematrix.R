@@ -4,14 +4,25 @@
 ##set the value of the matrix
 #get the value of the matrix
 makeCacheMatrix <- function(x = matrix()) {
+  ##the cached/calculated matrix
   m <- NULL
+  
+  ##set the original matrix and clear the cached matrix
   set <- function(y) {
     x <<- y
     m <<- NULL
   }
+  
+  ##return the original matrix
   get <- function() x
+  
+  ##store the value in the cache
   setmatrix <- function(solv) m <<- solv
+  
+  ##return the cached value
   getmatrix <- function() m
+  
+  ##return the function list
   list(set = set, get = get,
        setmatrix = setmatrix,
        getmatrix = getmatrix)
@@ -24,14 +35,24 @@ makeCacheMatrix <- function(x = matrix()) {
 ##Otherwise, it calculates the inverted matrix of the data and sets the value of the matrix into the cache 
 ##via the setmatrix function.
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+  ## access the cached value
   m <- x$getmatrix()
+  
   if(!is.null(m)) {
+    ##a value has been cached
     message("getting cached data")
     return(m)
   }
+  
+  ##no cache, grab the original value
   data <- x$get()
+  
+  ##invert the original value
   m <- solve(data, ...)
+  
+  ##store that value in cache
   x$setmatrix(m)
+  
+  #return the calulated value
   m
 }
