@@ -1,8 +1,8 @@
 ##The first function, makeCacheMatrix creates a special "vector", which is really a list containing a function to
-##set the value of the vector
-##get the value of the vector
-##set the value of the matrix
-#get the value of the matrix
+##set the value of the original matrix to use in the computation
+##get the value of the original matrix to use in the computation
+##set the value of the computed and cached matrix
+#get the value of the computed and cached matrix
 makeCacheMatrix <- function(x = matrix()) {
   ##the cached/calculated matrix
   m <- NULL
@@ -53,6 +53,6 @@ cacheSolve <- function(x, ...) {
   ##store that value in cache
   x$setmatrix(m)
   
-  #return the calulated value
+  #return the calculated value
   m
 }
